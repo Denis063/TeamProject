@@ -5,6 +5,11 @@ import org.junit.jupiter.api.Test;
 
 public class GameStoreTest {
 
+    private GameStore store = new GameStore();
+    private Game game1 = store.publishGame("Расцвет нации", "Стратегия");
+    private Game game2 = store.publishGame("Боец", "Файтинг");
+    private Game game3 = store.publishGame("Стрелок", "Шутер");
+
     @Test
     public void shouldAddGame() {
 
@@ -14,5 +19,18 @@ public class GameStoreTest {
         assertTrue(store.containsGame(game));
     }
 
-    // другие ваши тесты
+    @Test
+    public void shouldFindGameAtTheBeginning() {
+        assertTrue(store.containsGame(game1));
+    }
+
+    @Test
+    public void shouldFindGameInTheMiddle() {
+        assertTrue(store.containsGame(game2));
+    }
+
+    @Test
+    public void shouldFindGameAtTheEnd() {
+        assertTrue(store.containsGame(game3));
+    }
 }

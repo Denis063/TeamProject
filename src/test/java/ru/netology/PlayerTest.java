@@ -114,4 +114,50 @@ public class PlayerTest {
         int actual = player.sumGenre("Аркады");
         assertEquals(expected, actual);
     }
+    @Test
+    public void showMostPlayedIfNotPlayed() {
+        Player player = new Player("Ирина");
+        Game expected = null;
+        Game actual = player.mostPlayerByGenre("Выживалка");
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void showMostPlayedIfOneGame() {
+        Player player = new Player("Дмитрий");
+        player.installGame(game1);
+        player.play(game1, 10);
+
+        Game expected = game1;
+        Game actual = player.mostPlayerByGenre("Экшн");
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void showMostPlayedIfTwoGames() {
+        Player player = new Player("Олег");
+        player.installGame(game1);
+        player.play(game1, 5);
+        player.installGame(game4);
+        player.play(game4, 15);
+
+        Game expected = game4;
+        Game actual = player.mostPlayerByGenre("Экшн");
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void showMostPlayedIfThreeGames() {
+        Player player = new Player("Петр");
+        player.installGame(game1);
+        player.play(game1, 7);
+        player.installGame(game3);
+        player.play(game3, 11);
+        player.installGame(game4);
+        player.play(game4, 3);
+
+        Game expected = game3;
+        Game actual = player.mostPlayerByGenre("Экшн");
+        assertEquals(expected, actual);
+    }
 }

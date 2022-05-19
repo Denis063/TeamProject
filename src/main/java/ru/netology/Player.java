@@ -22,6 +22,9 @@ public class Player {
     /** добавление игры игроку
     если игра уже была, никаких изменений происходить не должно */
     public void installGame(Game game) {
+        if (playedTime.containsKey(game)) {
+            return;
+        }
         playedTime.put(game, 0);
     }
 
@@ -47,8 +50,6 @@ public class Player {
         for (Game game : playedTime.keySet()) {
             if (game.getGenre().equals(genre)) {
                 sum += playedTime.get(game);
-            } else {
-                sum = 0;
             }
         }
         return sum;

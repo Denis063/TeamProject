@@ -46,4 +46,9 @@ public class GameStoreTest {
 
         assertEquals(4, store.getSumPlayedTime());
     }
+
+    @Test
+    public void shouldFindMostPlayerWithNoPlayer(){
+        assertNull(store.getMostPlayer());
+    }
 }

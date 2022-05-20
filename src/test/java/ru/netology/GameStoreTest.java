@@ -39,5 +39,11 @@ public class GameStoreTest {
         store.addPlayTime("Стрелок", 12);
         assertEquals(12, store.getSumPlayedTime());
     }
+    @Test
+    public void shouldSumPlayTime(){
+        store.addPlayTime("Василий", 3);
+        store.addPlayTime("Василий", 1);
 
+        assertEquals(4, store.getSumPlayedTime());
+    }
 }

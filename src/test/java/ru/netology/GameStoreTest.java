@@ -11,7 +11,7 @@ public class GameStoreTest {
     private Game game3 = store.publishGame("Стрелок", "Шутер");
 
     @Test
-    public void shouldAddGame() {
+    public void shouldAddNewGame() {
 
         GameStore store = new GameStore();
         Game game = store.publishGame("Нетология Баттл Онлайн", "Аркады");
@@ -20,7 +20,7 @@ public class GameStoreTest {
     }
 
     @Test
-    public void shouldFindGameAtTheBeginning() {
+    public void shouldFindGameInTheBeginning() {
         assertTrue(store.containsGame(game1));
     }
 
@@ -30,7 +30,14 @@ public class GameStoreTest {
     }
 
     @Test
-    public void shouldFindGameAtTheEnd() {
+    public void shouldFindGameInTheEnd() {
         assertTrue(store.containsGame(game3));
     }
+
+    @Test
+    public void shouldAddPlayAtFirstTime(){
+        store.addPlayTime("Стрелок", 12);
+        assertEquals(12, store.getSumPlayedTime());
+    }
+
 }

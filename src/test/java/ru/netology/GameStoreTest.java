@@ -75,4 +75,18 @@ public class GameStoreTest {
         assertNotNull(store.getMostPlayer());
         assertTrue(store.getMostPlayer().equals("Игорь"));
     }
+    @Test
+    public void shouldTotalPlayTimeNoPlayers(){
+        assertEquals(0, store.getSumPlayedTime());
+    }
+
+    @Test
+    public void shouldTotalPlayTimeSeveralPlayers(){
+        store.addPlayTime("Роман", 3);
+        store.addPlayTime("Илья", 2);
+        store.addPlayTime("Сергей", 5);
+        store.addPlayTime("Святослав", 11);
+
+        assertEquals(21, store.getSumPlayedTime());
+    }
 }

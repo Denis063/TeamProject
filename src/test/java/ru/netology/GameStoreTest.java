@@ -51,4 +51,19 @@ public class GameStoreTest {
     public void shouldFindMostPlayerWithNoPlayer(){
         assertNull(store.getMostPlayer());
     }
+    @Test
+    public void shouldFindMostPlayerSinglePlayer(){
+        store.addPlayTime("Петр", 4);
+        assertTrue(store.getMostPlayer().equals("Петр"));
+    }
+
+    @Test
+    public void shouldFindWhoPlayedMostSeveralPlayers(){
+        store.addPlayTime("Василий", 6);
+        store.addPlayTime("Дмитрий", 3);
+        store.addPlayTime("Олег", 9);
+
+        assertTrue(store.getMostPlayer().equals("Олег"));
+    }
+    
 }

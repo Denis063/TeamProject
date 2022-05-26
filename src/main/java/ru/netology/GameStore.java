@@ -1,9 +1,6 @@
 package ru.netology;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class GameStore {
     private List<Game> games = new ArrayList<>();
@@ -30,12 +27,7 @@ public class GameStore {
      * если игра есть и false иначе
      */
     public boolean containsGame(Game game) {
-        for (int i = 1; i < games.size(); i++) {
-            if (games.get(i - 1).equals(game)) {
-                return true;
-            }
-        }
-        return false;
+        return games.contains(game);
     }
 
     /**
@@ -45,7 +37,7 @@ public class GameStore {
      */
     public void addPlayTime(String playerName, int hours) {
         if (playedTime.containsKey(playerName)) {
-            playedTime.put(playerName, playedTime.get(playerName));
+            playedTime.put(playerName, playedTime.get(playerName) + hours);
         } else {
             playedTime.put(playerName, hours);
         }
@@ -56,13 +48,15 @@ public class GameStore {
      * времени. Если игроков нет, то возвращется null
      */
     public String getMostPlayer() {
-        int mostTime = 1;
+        int mostTime;
         String bestPlayer = null;
-        for (String playerName : playedTime.keySet()) {
-            int playerTime = playedTime.get(playerName);
-            if (playerTime > mostTime) {
-                mostTime = playerTime;
-                bestPlayer = playerName;
+
+        if (!playedTime.isEmpty()) {
+            mostTime = Collections.max(playedTime.values());
+            for (String player : playedTime.keySet()) {
+                if (playedTime.get(player) == mostTime) {
+                    bestPlayer = player;
+                }
             }
         }
         return bestPlayer;
@@ -73,6 +67,12 @@ public class GameStore {
      * за играми этого каталога
      */
     public int getSumPlayedTime() {
-        return 0;
+        int sum = 0;
+
+        for (int hour : playedTime.values()) {
+            sum += hour;
+        }
+
+        return sum;
     }
 }
